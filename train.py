@@ -3,7 +3,6 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.layers import Conv2D ,MaxPooling2D,Dense,Dropout
 from tensorflow.keras.layers import Flatten
 from tensorflow.keras.callbacks import EarlyStopping
-
 train_path="dataset/train"
 test_path="dataset/test"
 train_data=ImageDataGenerator(rescale=1./255,rotation_range=30,zoom_range=0.2)
@@ -27,6 +26,6 @@ model.add(Dense(9,activation="softmax"))
 model.compile(optimizer="adam", loss="categorical_crossentropy",metrics=['accuracy'])
 model.summary()
 early_stop=EarlyStopping(monitor="val_loss",patience=3,restore_best_weights=True)
-history=model.fit(train_generator,validation_data=test_generator,epochs=50,callbacks=early_stop)
+history=model.fit(train_generator,validation_data=test_generator,epochs=20,callbacks=early_stop)
 model.save("fruits.keras")
 print("model saved")
